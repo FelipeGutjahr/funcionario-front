@@ -18,4 +18,8 @@ class FuncionarioService {
   Future<Response> excluir(int id) async {
     return await apiService.delete('/funcionario/excluir', id);
   }
+
+  Future<Response> salvar(Funcionario funcionario) async {
+    return await apiService.post('/funcionario/salvar', funcionario.toJson());
+  }
 }

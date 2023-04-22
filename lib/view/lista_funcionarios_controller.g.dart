@@ -16,20 +16,43 @@ mixin _$ListaFuncionariosController on _ListaFuncionariosControllerBase, Store {
           Computed<List<Funcionario>>(() => super.funcionarios,
               name: '_ListaFuncionariosControllerBase.funcionarios'))
       .value;
+  Computed<String>? _$errorMessageComputed;
+
+  @override
+  String get errorMessage =>
+      (_$errorMessageComputed ??= Computed<String>(() => super.errorMessage,
+              name: '_ListaFuncionariosControllerBase.errorMessage'))
+          .value;
 
   late final _$_funcionariosAtom = Atom(
       name: '_ListaFuncionariosControllerBase._funcionarios', context: context);
 
   @override
-  List<Funcionario> get _funcionarios {
+  ObservableList<Funcionario> get _funcionarios {
     _$_funcionariosAtom.reportRead();
     return super._funcionarios;
   }
 
   @override
-  set _funcionarios(List<Funcionario> value) {
+  set _funcionarios(ObservableList<Funcionario> value) {
     _$_funcionariosAtom.reportWrite(value, super._funcionarios, () {
       super._funcionarios = value;
+    });
+  }
+
+  late final _$_errorMessageAtom = Atom(
+      name: '_ListaFuncionariosControllerBase._errorMessage', context: context);
+
+  @override
+  String get _errorMessage {
+    _$_errorMessageAtom.reportRead();
+    return super._errorMessage;
+  }
+
+  @override
+  set _errorMessage(String value) {
+    _$_errorMessageAtom.reportWrite(value, super._errorMessage, () {
+      super._errorMessage = value;
     });
   }
 
@@ -50,9 +73,47 @@ mixin _$ListaFuncionariosController on _ListaFuncionariosControllerBase, Store {
   }
 
   @override
+  dynamic setErrorMessage(String errorMessage) {
+    final _$actionInfo = _$_ListaFuncionariosControllerBaseActionController
+        .startAction(name: '_ListaFuncionariosControllerBase.setErrorMessage');
+    try {
+      return super.setErrorMessage(errorMessage);
+    } finally {
+      _$_ListaFuncionariosControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic removeFuncionario(int id) {
+    final _$actionInfo =
+        _$_ListaFuncionariosControllerBaseActionController.startAction(
+            name: '_ListaFuncionariosControllerBase.removeFuncionario');
+    try {
+      return super.removeFuncionario(id);
+    } finally {
+      _$_ListaFuncionariosControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addFuncionario(Funcionario funcionario) {
+    final _$actionInfo = _$_ListaFuncionariosControllerBaseActionController
+        .startAction(name: '_ListaFuncionariosControllerBase.addFuncionario');
+    try {
+      return super.addFuncionario(funcionario);
+    } finally {
+      _$_ListaFuncionariosControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-funcionarios: ${funcionarios}
+funcionarios: ${funcionarios},
+errorMessage: ${errorMessage}
     ''';
   }
 }

@@ -6,36 +6,14 @@ class ApiService {
   ApiService(this._dio);
 
   get(endpoint, {params}) async {
-    Response? response;
-    try {
-      response = await _dio.get(endpoint, queryParameters: params);
-      // ignore: empty_catches
-    } catch (e) {}
-    return response;
+    return await _dio.get(endpoint, queryParameters: params);
   }
 
   delete(endpoint, int id) async {
-    Response? response;
-    try {
-      response = await _dio.get(endpoint, queryParameters: {'id': id});
-      // ignore: empty_catches
-    } catch (e) {
-      print('================== ERRO ==============');
-      print(e);
-    }
-    return response;
+    return await _dio.delete(endpoint, queryParameters: {'id': id});
   }
 
-  post() async {
-    try {
-      await _dio.post('/funcionario/salvar', data: {
-        'nome': 'Felipe',
-        'sobrenome': 'Gutjahr',
-        'email': 'gutjahrfelipe@gmail.com'
-      });
-    } catch (e) {
-      // ignore: avoid_print
-      print('OCORREU UM PROBLEMA AO FAZER A REQUISIÇÃO');
-    }
+  post(endpoint, json) async {
+    return await _dio.post(endpoint, data: json);
   }
 }

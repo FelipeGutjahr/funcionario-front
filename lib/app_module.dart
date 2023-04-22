@@ -8,7 +8,7 @@ class AppModule extends Module {
   @override
   final List<Bind> binds = [
     Bind((i) => Dio(BaseOptions(
-          baseUrl: 'http://192.168.2.116:8080',
+          baseUrl: 'http://192.168.2.121:8080',
           connectTimeout: const Duration(milliseconds: 5000),
           receiveTimeout: const Duration(milliseconds: 3000),
         ))),
